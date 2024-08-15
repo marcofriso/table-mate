@@ -6,6 +6,10 @@ import Images from "./components/Images";
 import Reviews from "./components/Reviews";
 import ReservationCard from "./components/ReservationCard";
 
+export const metadata = {
+  title: "Milestones Grill (Toronto) | TableMate",
+};
+
 const Restaurant = () => (
   <>
     <div className="bg-white w-[70%] rounded p-3 shadow">

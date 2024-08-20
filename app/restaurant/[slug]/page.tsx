@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import RestaurantNavBar from "./components/RestaurantNavbars";
+import RestaurantNavBar from "./components/RestaurantNavBar";
 import Title from "./components/Title";
 import Rating from "./components/Rating";
 import Description from "./components/Description";

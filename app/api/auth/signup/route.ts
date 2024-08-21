@@ -62,6 +62,17 @@ export async function POST(request: Request) {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
+  const user = await prisma.user.create({
+    data: {
+      first_name: firstName,
+      last_name: lastName,
+      password: hashedPassword,
+      city,
+      phone,
+      email,
+    },
+  });
+
   if (userWithEmail) {
     return NextResponse.json(
       { errorMessage: "Email is associated with another account" },
@@ -69,5 +80,5 @@ export async function POST(request: Request) {
     );
   }
 
-  return NextResponse.json({ hello: "there" });
+  return NextResponse.json({ hello: user });
 }

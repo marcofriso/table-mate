@@ -19,6 +19,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/validator": "^13.12.0",
+    "axios": "^1.7.4",
     "bcrypt": "^5.1.1",
     "jose": "^5.7.0",
     "jsonwebtoken": "^9.0.2",

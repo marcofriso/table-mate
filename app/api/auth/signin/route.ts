@@ -3,7 +3,6 @@ import validator from "validator";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import * as jose from "jose";
-import { setCookie } from "cookies-next";
 
 const prisma = new PrismaClient();
 

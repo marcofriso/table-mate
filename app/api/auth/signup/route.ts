@@ -90,5 +90,19 @@ export async function POST(request: Request) {
     .setExpirationTime("24h")
     .sign(secret);
 
-  return NextResponse.json({ token });
+  return NextResponse.json(
+    {
+      firstName: user.first_name,
+      lastName: user.last_name,
+      email: user.email,
+      phone: user.phone,
+      city: user.city,
+    },
+    {
+      status: 200,
+      headers: {
+        "Set-Cookie": `jwt=${token}; Max-Age=86400; Path=/`,
+      },
+    }
+  );
 }

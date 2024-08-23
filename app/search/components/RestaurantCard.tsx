@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Cuisine, Location, PRICE, Review } from "@prisma/client";
 import Price from "@/app/components/Price";
-import { calculateReviewRatingAverage } from "@/utils/calculateReviewRatingAverage";
+import { calculateReviewRatingAverage } from "@/utils/functions/calculateReviewRatingAverage";
 import Stars from "@/app/components/Stars";
 
 interface Restaurant {

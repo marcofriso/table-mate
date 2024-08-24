@@ -5,8 +5,11 @@ import React, {
   Dispatch,
   ReactNode,
   SetStateAction,
+  useEffect,
   useState,
 } from "react";
+import { getCookie } from "cookies-next";
+import axios from "axios";
 
 interface User {
   id: number;
@@ -40,6 +43,53 @@ export default function AuthContext({ children }: { children: ReactNode }) {
     error: null,
     data: null,
   });
+
+  const fetchUser = async () => {
+    setAuthState({
+      data: null,
+      error: null,
+      loading: true,
+    });
+
+    try {
+      const jwt = getCookie("jwt");
+
+      if (!jwt) {
+        return setAuthState({
+          data: null,
+          error: null,
+          loading: false,
+        });
+      }
+
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_FRONTEND_SERVER}/api/auth/me`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+
+      axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
+
+      setAuthState({
+        data: response.data,
+        error: null,
+        loading: false,
+      });
+    } catch (error: any) {
+      setAuthState({
+        data: null,
+        error: error.response.data.errorMessage,
+        loading: false,
+      });
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <AuthenticationContext.Provider value={{ ...authState, setAuthState }}>

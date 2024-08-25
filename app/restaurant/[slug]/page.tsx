@@ -17,6 +17,8 @@ interface Restaurant {
   name: string;
   images: string[];
   description: string;
+  open_time: string;
+  close_time: string;
   slug: string;
   reviews: Review[];
 }
@@ -33,6 +35,8 @@ const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
       name: true,
       images: true,
       description: true,
+      open_time: true,
+      close_time: true,
       slug: true,
       reviews: true,
     },
@@ -60,7 +64,10 @@ const RestaurantDetails = async ({ params }: { params: { slug: string } }) => {
         <Reviews reviews={restaurant.reviews} />
       </div>
       <div className="w-[27%] relative text-reg">
-        <ReservationCard />
+        <ReservationCard
+          openTime={restaurant.open_time}
+          closeTime={restaurant.close_time}
+        />
       </div>
     </>
   );

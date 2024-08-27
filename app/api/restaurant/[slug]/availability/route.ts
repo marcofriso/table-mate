@@ -81,6 +81,16 @@ export async function GET(request: NextRequest, { params }: SlugParam) {
     };
   });
 
+  searchTimesWithTables.forEach((t) => {
+    t.tables = t.tables.filter((table) => {
+      if (bookingTablesObj[t.date.toISOString()]) {
+        if (bookingTablesObj[t.date.toISOString()][table.id]) return false;
+      }
+
+      return true;
+    });
+  });
+
   // return NextResponse.json({ slug, day, time, partySize }, { status: 200 });
   return NextResponse.json(
     { searchTimes, bookings, bookingTablesObj, tables, searchTimesWithTables },

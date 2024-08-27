@@ -23,24 +23,25 @@ export async function GET(request: NextRequest, { params }: SlugParam) {
     );
   }
 
-  // const restaurant = await prisma.restaurant.findUnique({
-  //   where: {
-  //     slug,
-  //   },
-  //   select: {
-  //     tables: true,
-  //     open_time: true,
-  //     close_time: true,
-  //   },
-  // });
+  const restaurant = await prisma.restaurant.findUnique({
+    where: {
+      slug,
+    },
+    select: {
+      tables: true,
+      open_time: true,
+      close_time: true,
+    },
+  });
 
-  // if (!restaurant) {
-  //   return NextResponse.json(
-  //     { errorMessage: "Invalid data provided" },
-  //     { status: 400 }
-  //   );
-  // }
-  //
+  if (!restaurant) {
+    return NextResponse.json(
+      { errorMessage: "Invalid data provided" },
+      { status: 400 }
+    );
+  }
+
+  const tables = restaurant.tables;
 
   const searchTimes = times.find((t) => t.time === time)?.searchTimes;
 
@@ -74,7 +75,7 @@ export async function GET(request: NextRequest, { params }: SlugParam) {
 
   // return NextResponse.json({ slug, day, time, partySize }, { status: 200 });
   return NextResponse.json(
-    { searchTimes, bookings, bookingTablesObj },
+    { searchTimes, bookings, bookingTablesObj, tables },
     { status: 200 }
   );
 }

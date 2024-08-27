@@ -91,16 +91,27 @@ export async function GET(request: NextRequest, { params }: SlugParam) {
     });
   });
 
-  const availabilities = searchTimesWithTables.map((t) => {
-    const sumSeats = t.tables.reduce((sum, table) => {
-      return sum + table.seats;
-    }, 0);
+  const availabilities = searchTimesWithTables
+    .map((t) => {
+      const sumSeats = t.tables.reduce((sum, table) => {
+        return sum + table.seats;
+      }, 0);
 
-    return {
-      time: t.time,
-      available: sumSeats >= parseInt(partySize),
-    };
-  });
+      return {
+        time: t.time,
+        available: sumSeats >= parseInt(partySize),
+      };
+    })
+    .filter((availability) => {
+      const timeIsAfterOpeningHour =
+        new Date(`${day}T${availability.time}`) >=
+        new Date(`${day}T${restaurant.open_time}`);
+      const timeIsBeforeClosingHour =
+        new Date(`${day}T${availability.time}`) <=
+        new Date(`${day}T${restaurant.close_time}`);
+
+      return timeIsAfterOpeningHour && timeIsBeforeClosingHour;
+    });
 
   // return NextResponse.json({ slug, day, time, partySize }, { status: 200 });
   return NextResponse.json({ availabilities }, { status: 200 });

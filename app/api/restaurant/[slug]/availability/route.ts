@@ -60,9 +60,23 @@ export async function GET(request: NextRequest, { params }: SlugParam) {
     },
   });
 
-  // return NextResponse.json({ slug, day, time, partySize }, { status: 200 });
+  const bookingTablesObj: { [key: string]: { [key: number]: true } } = {};
 
-  return NextResponse.json({ searchTimes, bookings }, { status: 200 });
+  bookings.forEach((booking) => {
+    bookingTablesObj[booking.booking_time.toISOString()] =
+      booking.tables.reduce((obj, table) => {
+        return {
+          ...obj,
+          [table.table_id]: true,
+        };
+      }, {});
+  });
+
+  // return NextResponse.json({ slug, day, time, partySize }, { status: 200 });
+  return NextResponse.json(
+    { searchTimes, bookings, bookingTablesObj },
+    { status: 200 }
+  );
 }
 
 // http://localhost:3000/api/restaurant/vivaan-fine-indian-cuisine-ottawa/availability?day=2024-09-09&time=12:00:00.000Z&partySize=4

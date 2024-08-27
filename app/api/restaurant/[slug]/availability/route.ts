@@ -73,9 +73,17 @@ export async function GET(request: NextRequest, { params }: SlugParam) {
       }, {});
   });
 
+  const searchTimesWithTables = searchTimes.map((searchTime) => {
+    return {
+      date: new Date(`${day}T${searchTime}`),
+      time: searchTime,
+      tables,
+    };
+  });
+
   // return NextResponse.json({ slug, day, time, partySize }, { status: 200 });
   return NextResponse.json(
-    { searchTimes, bookings, bookingTablesObj, tables },
+    { searchTimes, bookings, bookingTablesObj, tables, searchTimesWithTables },
     { status: 200 }
   );
 }

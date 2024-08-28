@@ -25,7 +25,7 @@ const ReservationCard = ({
   const [partySize, setPartySize] = useState("2");
   const [day, setDay] = useState(new Date().toISOString().split("T")[0]);
 
-  const { data, loading, error, fetchAvailabilities } = useAvailabilities();
+  const { data, loading, fetchAvailabilities } = useAvailabilities();
 
   const handleChangeDate = (date: Date | null) => {
     if (date) {
@@ -107,8 +107,10 @@ const ReservationCard = ({
             value={time}
             onChange={(e) => setTime(e.target.value)}
           >
-            {filterTimeByRestaurantOpenWindow().map((time) => (
-              <option value={time.time}>{time.displayTime}</option>
+            {filterTimeByRestaurantOpenWindow().map((time, i) => (
+              <option value={time.time} key={`time-${i}`}>
+                {time.displayTime}
+              </option>
             ))}
           </select>
         </div>
@@ -126,11 +128,12 @@ const ReservationCard = ({
         <div className="mt-4">
           <p className="text-reg">Select a Time</p>
           <div className="flex flex-wrap mt-2">
-            {data.map((time) => {
+            {data.map((time, i) => {
               return time.available ? (
                 <Link
                   href={`/reserve/${slug}?date=${day}T${time.time}&partySize=${partySize}`}
                   className="bg-red-600 cursor-pointer p-2 w-24 text-center text-white mb-3 rounded mr-3"
+                  key={`time-link-${i}`}
                 >
                   <p className="text-sm font-bold">
                     {convertToDisplayTime(time.time as Time)}

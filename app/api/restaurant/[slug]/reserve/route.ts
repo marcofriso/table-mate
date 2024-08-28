@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import { times } from "@/utils/data";
+import { findAvailabileTables } from "@/utils/services/findAvailableTables";
 
 type SlugParam = {
   params: {
@@ -51,11 +53,34 @@ export async function GET(request: NextRequest, { params }: SlugParam) {
     );
   }
 
-  return NextResponse.json({
-    slug,
+  const searchTimes = times.find((t) => t.time === time)?.searchTimes;
+
+  if (!searchTimes) {
+    return NextResponse.json(
+      { errorMessage: "Invalid data provided" },
+      { status: 400 }
+    );
+  }
+
+  const searchTimesWithTables = await findAvailabileTables({
     day,
-    time,
-    partySize,
+    restaurant,
+    searchTimes,
+  });
+
+  const searchTimeWithTables = searchTimesWithTables.find((t) => {
+    return t.date.toISOString() === new Date(`${day}T${time}`).toISOString();
+  });
+
+  if (!searchTimeWithTables) {
+    return NextResponse.json(
+      { errorMessage: "No availablity, cannot book" },
+      { status: 400 }
+    );
+  }
+
+  return NextResponse.json({
+    searchTimeWithTables,
   });
 }
 

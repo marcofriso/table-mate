@@ -15,7 +15,7 @@ const Header = ({
   date: string;
   partySize: string;
 }) => {
-  const [time] = date.split("T");
+  const [_, time] = date.split("T");
 
   return (
     <div>

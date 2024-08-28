@@ -11,11 +11,20 @@ type SlugParam = {
 
 const prisma = new PrismaClient();
 
-export async function GET(request: NextRequest, { params }: SlugParam) {
+export async function POST(request: NextRequest, { params }: SlugParam) {
   const slug = params.slug;
   const day = request.nextUrl.searchParams.get("day");
   const time = request.nextUrl.searchParams.get("time");
   const partySize = request.nextUrl.searchParams.get("partySize");
+
+  const {
+    bookerEmail,
+    bookerPhone,
+    bookerFirstName,
+    bookerLastName,
+    bookerOccasion,
+    bookerRequest,
+  } = await request.json();
 
   if (!day || !time || !partySize) {
     return NextResponse.json(
@@ -122,9 +131,34 @@ export async function GET(request: NextRequest, { params }: SlugParam) {
     }
   }
 
+  const booking = await prisma.booking.create({
+    data: {
+      number_of_people: parseInt(partySize),
+      booking_time: new Date(`${day}T${time}`),
+      booker_email: bookerEmail,
+      booker_phone: bookerPhone,
+      booker_first_name: bookerFirstName,
+      booker_last_name: bookerLastName,
+      booker_occasion: bookerOccasion,
+      booker_request: bookerRequest,
+      restaurant_id: restaurant.id,
+    },
+  });
+
+  const bookingsOnTablesData = tablesToBooks.map((table_id) => {
+    return {
+      table_id,
+      booking_id: booking.id,
+    };
+  });
+
+  await prisma.bookingsOnTables.createMany({
+    data: bookingsOnTablesData,
+  });
+
   return NextResponse.json({
     tablesToBooks,
   });
 }
 
-// http://localhost:3000/api/restaurant/vivaan-fine-indian-cuisine-ottawa/reserve?day=2024-09-09&time=15:00:00.000Z&partySize=4
+// http://localhost:3000/api/restaurant/vivaan-fine-indian-cuisine-ottawa/reserve?day=2024-09-09&time=19:00:00.000Z&partySize=4

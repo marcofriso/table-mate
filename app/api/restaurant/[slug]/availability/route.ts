@@ -116,4 +116,4 @@ export async function GET(request: NextRequest, { params }: SlugParam) {
   return NextResponse.json(availabilities, { status: 200 });
 }
 
-// http://localhost:3000/api/restaurant/vivaan-fine-indian-cuisine-ottawa/availability?day=2024-09-09&time=12:00:00.000Z&partySize=4
+// http://localhost:3000/api/restaurant/vivaan-fine-indian-cuisine-ottawa/availability?day=2024-09-09&time=15:00:00.000Z&partySize=4

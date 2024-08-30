@@ -36,7 +36,7 @@ const Home = async () => {
   return (
     <main>
       <Header />
-      <div className="py-3 px-36 mt-10 flex flex-wrap justify-center">
+      <div className="py-3 md:px-36 mt-10 flex flex-wrap justify-center">
         {restaurants.map((restaurant, id) => (
           <RestaurantCard key={id} restaurant={restaurant} />
         ))}

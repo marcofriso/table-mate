@@ -1,6 +1,6 @@
 const Images = ({ images }: { images: string[] }) => (
   <div>
-    <h1 className="font-bold text-3xl mt-10 mb-7 border-b pb-5">
+    <h1 className="font-bold text-xl sm:text-3xl mt-10 mb-7 border-b pb-5">
       {images.length} photo{images.length > 1 ? "s" : ""}
     </h1>
     <div className="flex flex-wrap">

@@ -31,7 +31,9 @@ const RestaurantCard = ({
 
   return (
     <div className="border-b flex pb-5 ml-4">
-      <img src={main_image} alt="" className="w-44 rounded" />
+      <div className="w-20 xs:w-36 sm:w-44">
+        <img src={main_image} alt="" className="rounded object-cover h-full" />
+      </div>
       <div className="pl-5">
         <h2 className="text-2xl">{name}</h2>
         <div className="flex items-start">

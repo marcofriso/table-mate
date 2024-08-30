@@ -7,22 +7,10 @@ import AuthModalInputs from "./AuthModalInputs";
 import useAuth from "@/utils/hooks/useAuth";
 import { AuthenticationContext } from "../context/AuthContext";
 import { Alert, CircularProgress } from "@mui/material";
-
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const AuthModal = ({ isSignin }: { isSignin: boolean }) => {
   const { loading, data, error } = useContext(AuthenticationContext);
-
   const [open, setOpen] = useState(false);
   const [inputs, setInputs] = useState({
     firstName: "",
@@ -38,6 +26,23 @@ const AuthModal = ({ isSignin }: { isSignin: boolean }) => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const isWiderThan480px = useMediaQuery("(min-width:480px)");
+  const isShorterThan600px = useMediaQuery("(max-height:600px)");
+
+  const style = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: isWiderThan480px ? "400px" : "350px",
+    maxHeight: isShorterThan600px ? "85vh" : "600px",
+    overflowY: isShorterThan600px ? "auto" : "unset",
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
 
   const renderContent = (signinContent: string, signupContent: string) => {
     return isSignin ? signinContent : signupContent;

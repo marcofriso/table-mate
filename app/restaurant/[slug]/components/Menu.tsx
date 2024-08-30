@@ -9,7 +9,7 @@ const Menu = ({ menu }: { menu: Item[] }) => (
         <h1 className="font-bold text-4xl">Menu</h1>
       </div>
       {menu.length ? (
-        <div className="flex flex-wrap justify-between">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-5">
           {menu.map((item) => (
             <MenuCard key={item.id} item={item} />
           ))}

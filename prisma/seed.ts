@@ -1,7 +1,6 @@
-const { PrismaClient, PRICE } = require("@prisma/client");
+const { PRICE } = require("@prisma/client");
+import prisma from "@/utils/services/db";
 import type { Cuisine, Location, Restaurant } from "@prisma/client";
-
-const prisma = new PrismaClient();
 
 async function main() {
   await prisma.table.deleteMany();

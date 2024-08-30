@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
 import { findAvailabileTables } from "@/utils/services/findAvailableTables";
 import { times } from "@/utils/data";
+import prisma from "@/utils/services/db";
 
 type SlugParam = {
   params: {
     slug: string;
   };
 };
-
-const prisma = new PrismaClient();
 
 export async function GET(request: NextRequest, { params }: SlugParam) {
   const slug = params.slug;

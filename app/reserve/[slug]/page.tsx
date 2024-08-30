@@ -1,13 +1,11 @@
 import { notFound } from "next/navigation";
-import { PrismaClient } from "@prisma/client";
 import Header from "./components/Header";
 import Form from "./components/Form";
+import prisma from "@/utils/services/db";
 
 export const metadata = {
   title: "Reserve | TableMate",
 };
-
-const prisma = new PrismaClient();
 
 const fetchRestaurantBySlug = async (slug: string) => {
   const restaurant = await prisma.restaurant.findUnique({

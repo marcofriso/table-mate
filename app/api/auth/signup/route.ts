@@ -1,10 +1,8 @@
 import { NextResponse } from "next/server";
 import validator from "validator";
-import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import * as jose from "jose";
-
-const prisma = new PrismaClient();
+import prisma from "@/utils/services/db";
 
 export async function POST(request: Request) {
   const { firstName, lastName, email, phone, city, password } =

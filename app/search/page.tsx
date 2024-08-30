@@ -1,7 +1,8 @@
-import { PRICE, PrismaClient } from "@prisma/client";
+import { PRICE } from "@prisma/client";
 import Header from "./components/Header";
 import RestaurantCard from "./components/RestaurantCard";
 import SearchSideBar from "./components/SearchSideBar";
+import prisma from "@/utils/services/db";
 
 export const metadata = {
   title: "Search | TableMate",
@@ -12,8 +13,6 @@ interface SearchParams {
   cuisine?: string;
   price?: PRICE;
 }
-
-const prisma = new PrismaClient();
 
 const fetchRestaurantsByCity = (searchParams: SearchParams) => {
   const where: any = {};

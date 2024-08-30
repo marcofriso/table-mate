@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
 import { times } from "@/utils/data";
 import { findAvailabileTables } from "@/utils/services/findAvailableTables";
+import prisma from "@/utils/services/db";
 
 type SlugParam = {
   params: {
     slug: string;
   };
 };
-
-const prisma = new PrismaClient();
 
 export async function POST(request: NextRequest, { params }: SlugParam) {
   const slug = params.slug;

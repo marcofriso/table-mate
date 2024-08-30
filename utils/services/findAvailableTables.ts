@@ -1,6 +1,5 @@
-import { PrismaClient, Table } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { Table } from "@prisma/client";
+import prisma from "./db";
 
 export const findAvailabileTables = async ({
   day,

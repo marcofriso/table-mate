@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { PrismaClient, Review } from "@prisma/client";
+import { Review } from "@prisma/client";
 import RestaurantNavBar from "./components/RestaurantNavBar";
 import Title from "./components/Title";
 import Description from "./components/Description";
@@ -7,6 +7,7 @@ import Images from "./components/Images";
 import ReservationCard from "./components/ReservationCard";
 import Rating from "./components/Rating";
 import Reviews from "./components/Reviews";
+import prisma from "@/utils/services/db";
 
 export const metadata = {
   title: "Milestones Grill (Toronto) | TableMate",
@@ -22,8 +23,6 @@ interface Restaurant {
   slug: string;
   reviews: Review[];
 }
-
-const prisma = new PrismaClient();
 
 const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
   const restaurant = await prisma.restaurant.findUnique({

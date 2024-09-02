@@ -2,7 +2,7 @@
 
 import { useContext } from "react";
 import Link from "next/link";
-import AuthModal from "./AuthModal";
+import AuthModalButton from "./AuthModalButton";
 import { AuthenticationContext } from "../context/AuthContext";
 import useAuth from "@/utils/hooks/useAuth";
 
@@ -13,8 +13,7 @@ const NavBar = () => {
   return (
     <nav className="bg-white p-2 flex justify-between">
       <Link href="/" className="font-bold text-gray-700 text-xl">
-        {" "}
-        TableMate{" "}
+        TableMate
       </Link>
       <div>
         {loading ? null : (
@@ -28,8 +27,8 @@ const NavBar = () => {
               </button>
             ) : (
               <>
-                <AuthModal isSignin={true} />
-                <AuthModal isSignin={false} />
+                <AuthModalButton isSignin={true} />
+                <AuthModalButton isSignin={false} />
               </>
             )}
           </div>

@@ -1,10 +1,12 @@
 import { useContext } from "react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import { deleteCookie } from "cookies-next";
 import { AuthenticationContext } from "@/app/context/AuthContext";
 
 const useAuth = () => {
   const { setAuthState } = useContext(AuthenticationContext);
+  const { refresh } = useRouter();
 
   const signin = async (
     {
@@ -106,6 +108,8 @@ const useAuth = () => {
       error: null,
       loading: false,
     });
+
+    refresh();
   };
 
   return {

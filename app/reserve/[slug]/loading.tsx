@@ -1,9 +1,8 @@
-import Header from "./components/Header";
+import React from "react";
 
 const Loading = () => {
   return (
     <main>
-      <Header />
       <div className="py-3 md:px-36 mt-10 flex flex-wrap justify-center">
         {new Array(12).fill(0).map((_, i) => (
           <div

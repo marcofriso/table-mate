@@ -25,13 +25,13 @@ const NavBar = () => {
                 {bookings.length > 0 ? (
                   <Link
                     href="/bookings"
-                    className="bg-red-400 text-white border p-1 px-4 rounded mr-3"
+                    className="bg-red-400 hover:bg-red-500 text-white border p-1 px-4 rounded mr-3"
                   >
                     My Bookings
                   </Link>
                 ) : null}
                 <button
-                  className="bg-blue-400 text-white border p-1 px-4 rounded mr-3"
+                  className="bg-blue-400 hover:bg-blue-500 text-white border p-1 px-4 rounded mr-3"
                   onClick={signout}
                 >
                   Sign out

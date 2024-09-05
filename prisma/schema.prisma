@@ -101,6 +101,7 @@ model Booking {
   booker_occasion   String?
   booker_request    String?
   restaurant_id     Int
+  restaurant_name   String
   restaurant        Restaurant         @relation(fields: [restaurant_id], references: [id])
   user_id           Int
   user              User               @relation(fields: [user_id], references: [id])

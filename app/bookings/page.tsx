@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import useBookings from "@/utils/hooks/useBookings";
 import { AuthenticationContext } from "../context/AuthContext";
 
-export default function BookingsComponent() {
+const Bookings = () => {
   const { data } = useContext(AuthenticationContext);
   const { bookings, loading, error } = useBookings(data?.id);
 
@@ -16,34 +16,80 @@ export default function BookingsComponent() {
     return <p>Error: {error}</p>;
   }
 
+  const sortedBookings =
+    bookings.length > 0
+      ? bookings.sort(
+          (a, b) =>
+            new Date(a.booking_time).getTime() -
+            new Date(b.booking_time).getTime()
+        )
+      : [];
+
   return (
-    <div>
+    <div className="overflow-x-auto">
       {bookings.length > 0 ? (
-        <table>
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Booking Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {bookings.map((booking) => (
-              <tr key={booking.id}>
-                <td>{booking.booker_first_name}</td>
-                <td>{booking.booker_last_name}</td>
-                <td>{booking.booker_email}</td>
-                <td>{booking.booker_phone}</td>
-                <td>{new Date(booking.booking_time).toLocaleString()}</td>
+        <>
+          <table className="hidden md:table min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <thead className="bg-gray-200">
+              <tr>
+                <th className="text-left p-4">Restaurant Name</th>
+                <th className="text-left p-4">Booking Date and Time</th>
+                <th className="text-left p-4">Number of People</th>
+                <th className="text-center p-4">Action</th>
               </tr>
+            </thead>
+            <tbody>
+              {sortedBookings.map((booking, index) => (
+                <tr
+                  key={booking.id}
+                  className={`${
+                    index % 2 === 0 ? "bg-gray-50" : "bg-white"
+                  } hover:bg-gray-100`}
+                >
+                  <td className="p-4">{booking.restaurant_name}</td>
+                  <td className="p-4">
+                    {new Date(booking.booking_time).toLocaleString()}
+                  </td>
+                  <td className="p-4">{booking.number_of_people}</td>
+                  <td className="text-center p-4">
+                    <button className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded shadow">
+                      Cancel
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="md:hidden">
+            {sortedBookings.map((booking) => (
+              <div
+                key={booking.id}
+                className="bg-gray-50 shadow-md rounded-lg p-4 mb-4 "
+              >
+                <div className="mb-2">
+                  <strong>Restaurant Name:</strong> {booking.restaurant_name}
+                </div>
+                <div className="mb-2">
+                  <strong>Booking Date and Time:</strong>{" "}
+                  {new Date(booking.booking_time).toLocaleString()}
+                </div>
+                <div className="mb-2">
+                  <strong>Number of People:</strong> {booking.number_of_people}
+                </div>
+                <div className="text-right">
+                  <button className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded shadow">
+                    Cancel
+                  </button>
+                </div>
+              </div>
             ))}
-          </tbody>
-        </table>
+          </div>
+        </>
       ) : (
-        <p>No bookings found</p>
+        <p className="text-gray-500">No bookings found</p>
       )}
     </div>
   );
-}
+};
+
+export default Bookings;

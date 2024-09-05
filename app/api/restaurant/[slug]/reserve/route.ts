@@ -41,6 +41,7 @@ export async function POST(request: NextRequest, { params }: SlugParam) {
       open_time: true,
       close_time: true,
       id: true,
+      name: true,
     },
   });
 
@@ -142,6 +143,7 @@ export async function POST(request: NextRequest, { params }: SlugParam) {
       booker_request: bookerRequest,
       user_id: userId,
       restaurant_id: restaurant.id,
+      restaurant_name: restaurant.name,
     },
   });
 

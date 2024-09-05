@@ -90,6 +90,7 @@ export async function POST(request: Request) {
 
   return NextResponse.json(
     {
+      id: user.id,
       firstName: user.first_name,
       lastName: user.last_name,
       email: user.email,

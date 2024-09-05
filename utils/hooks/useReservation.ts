@@ -10,6 +10,7 @@ export default function useReservation() {
     partySize,
     day,
     time,
+    userId,
     bookerFirstName,
     bookerLastName,
     bookerPhone,
@@ -22,6 +23,7 @@ export default function useReservation() {
     partySize: string;
     day: string;
     time: string;
+    userId: number;
     bookerFirstName: string;
     bookerLastName: string;
     bookerPhone: string;
@@ -42,6 +44,7 @@ export default function useReservation() {
           bookerEmail,
           bookerOccasion,
           bookerRequest,
+          userId,
         },
         {
           params: {

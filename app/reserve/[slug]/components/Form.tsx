@@ -62,19 +62,22 @@ export default function Form({
   };
 
   const handleClick = async () => {
-    await createReservation({
-      slug,
-      partySize,
-      time,
-      day,
-      bookerFirstName: inputs.bookerFirstName,
-      bookerLastName: inputs.bookerLastName,
-      bookerEmail: inputs.bookerEmail,
-      bookerOccasion: inputs.bookerOccasion,
-      bookerPhone: inputs.bookerPhone,
-      bookerRequest: inputs.bookerRequest,
-      setDidBook,
-    });
+    if (data?.id) {
+      await createReservation({
+        slug,
+        partySize,
+        time,
+        day,
+        userId: data?.id,
+        bookerFirstName: inputs.bookerFirstName,
+        bookerLastName: inputs.bookerLastName,
+        bookerEmail: inputs.bookerEmail,
+        bookerOccasion: inputs.bookerOccasion,
+        bookerPhone: inputs.bookerPhone,
+        bookerRequest: inputs.bookerRequest,
+        setDidBook,
+      });
+    }
   };
 
   return (

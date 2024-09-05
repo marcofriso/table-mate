@@ -22,6 +22,7 @@ export async function POST(request: NextRequest, { params }: SlugParam) {
     bookerLastName,
     bookerOccasion,
     bookerRequest,
+    userId,
   } = await request.json();
 
   if (!day || !time || !partySize) {
@@ -139,6 +140,7 @@ export async function POST(request: NextRequest, { params }: SlugParam) {
       booker_last_name: bookerLastName,
       booker_occasion: bookerOccasion,
       booker_request: bookerRequest,
+      user_id: userId,
       restaurant_id: restaurant.id,
     },
   });

@@ -5,9 +5,11 @@ import Link from "next/link";
 import AuthModalButton from "./AuthModalButton";
 import { AuthenticationContext } from "../context/AuthContext";
 import useAuth from "@/utils/hooks/useAuth";
+import useBookings from "@/utils/hooks/useBookings";
 
 const NavBar = () => {
   const { loading, data } = useContext(AuthenticationContext);
+  const { bookings } = useBookings(data?.id);
   const { signout } = useAuth();
 
   return (
@@ -19,12 +21,22 @@ const NavBar = () => {
         {loading ? null : (
           <div className="flex">
             {data ? (
-              <button
-                className="bg-blue-400 text-white border p-1 px-4 rounded mr-3"
-                onClick={signout}
-              >
-                Sign out
-              </button>
+              <>
+                {bookings.length > 0 ? (
+                  <Link
+                    href="/bookings"
+                    className="bg-red-400 text-white border p-1 px-4 rounded mr-3"
+                  >
+                    My Bookings
+                  </Link>
+                ) : null}
+                <button
+                  className="bg-blue-400 text-white border p-1 px-4 rounded mr-3"
+                  onClick={signout}
+                >
+                  Sign out
+                </button>
+              </>
             ) : (
               <>
                 <AuthModalButton isSignin={true} />

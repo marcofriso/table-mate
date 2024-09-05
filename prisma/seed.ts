@@ -1,5 +1,5 @@
 const { PRICE } = require("@prisma/client");
-import prisma from "@/utils/services/db";
+import prisma from "../utils/services/db";
 import type { Cuisine, Location, Restaurant } from "@prisma/client";
 
 async function main() {

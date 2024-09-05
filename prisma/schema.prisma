@@ -63,16 +63,17 @@ model Cuisine {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   first_name String
   last_name  String
   city       String
   password   String
-  email      String   @unique
+  email      String    @unique
   phone      String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
   reviews    Review[]
+  bookings   Booking[]
 }
 
 model Review {
@@ -101,6 +102,8 @@ model Booking {
   booker_request    String?
   restaurant_id     Int
   restaurant        Restaurant         @relation(fields: [restaurant_id], references: [id])
+  user_id           Int
+  user              User               @relation(fields: [user_id], references: [id])
   tables            BookingsOnTables[]
   created_at        DateTime           @default(now())
   updated_at        DateTime           @updatedAt

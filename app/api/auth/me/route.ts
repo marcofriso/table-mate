@@ -39,6 +39,7 @@ export async function GET(request: Request) {
     id: user.id,
     firstName: user.first_name,
     lastName: user.last_name,
+    email: user.email,
     phone: user.phone,
     city: user.city,
   });

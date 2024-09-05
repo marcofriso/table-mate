@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
 import useReservation from "@/utils/hooks/useReservation";
+import { AuthenticationContext } from "@/app/context/AuthContext";
 
 export default function Form({
   slug,
@@ -13,6 +14,8 @@ export default function Form({
   date: string;
   partySize: string;
 }) {
+  const { data } = useContext(AuthenticationContext);
+
   const [inputs, setInputs] = useState({
     bookerFirstName: "",
     bookerLastName: "",
@@ -37,6 +40,19 @@ export default function Form({
     }
     return setDisabled(true);
   }, [inputs]);
+
+  useEffect(() => {
+    if (data) {
+      setInputs({
+        bookerFirstName: data.firstName,
+        bookerLastName: data.lastName,
+        bookerEmail: data.email,
+        bookerPhone: data.phone,
+        bookerOccasion: "",
+        bookerRequest: "",
+      });
+    }
+  }, [data]);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({

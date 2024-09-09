@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
 import useReservation from "@/utils/hooks/useReservation";
 import { AuthenticationContext } from "@/app/context/AuthContext";
+import { BookingsContext } from "@/app/context/BookingsContext";
 
 export default function Form({
   slug,
@@ -15,6 +16,7 @@ export default function Form({
   partySize: string;
 }) {
   const { data } = useContext(AuthenticationContext);
+  const { refreshBookings } = useContext(BookingsContext);
 
   const [inputs, setInputs] = useState({
     bookerFirstName: "",
@@ -77,6 +79,8 @@ export default function Form({
         bookerRequest: inputs.bookerRequest,
         setDidBook,
       });
+
+      refreshBookings();
     }
   };
 

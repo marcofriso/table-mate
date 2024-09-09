@@ -37,7 +37,11 @@ export const AuthenticationContext = createContext<AuthState>({
   setAuthState: () => {},
 });
 
-export default function AuthContext({ children }: { children: ReactNode }) {
+export default function AuthenticationProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const [authState, setAuthState] = useState<State>({
     loading: true,
     error: null,

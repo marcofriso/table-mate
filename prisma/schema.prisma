@@ -105,7 +105,7 @@ model Booking {
   restaurant        Restaurant         @relation(fields: [restaurant_id], references: [id])
   user_id           Int
   user              User               @relation(fields: [user_id], references: [id])
-  tables            BookingsOnTables[]
+  tables            BookingsOnTables[] @relation
   created_at        DateTime           @default(now())
   updated_at        DateTime           @updatedAt
 }
@@ -122,7 +122,7 @@ model Table {
 
 model BookingsOnTables {
   booking_id Int
-  booking    Booking  @relation(fields: [booking_id], references: [id])
+  booking    Booking  @relation(fields: [booking_id], references: [id], onDelete: Cascade)
   table_id   Int
   table      Table    @relation(fields: [table_id], references: [id])
   created_at DateTime @default(now())

@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, useEffect, useContext } from "react";
+import {
+  useState,
+  useEffect,
+  useContext,
+  SetStateAction,
+  Dispatch,
+} from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import AuthModalInputs from "./AuthModalInputs";
@@ -16,7 +22,7 @@ const AuthModal = ({
 }: {
   isSignin: boolean;
   open: boolean;
-  setOpen: any;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   const { loading, error } = useContext(AuthenticationContext);
 
@@ -93,8 +99,8 @@ const AuthModal = ({
     <Modal
       open={open}
       onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
+      aria-labelledby="auth-modal"
+      aria-describedby="auth-modal"
     >
       <Box sx={style}>
         {loading ? (

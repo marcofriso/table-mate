@@ -5,11 +5,12 @@ import Link from "next/link";
 import AuthModalButton from "./AuthModalButton";
 import { AuthenticationContext } from "../context/AuthContext";
 import useAuth from "@/utils/hooks/useAuth";
-import useBookings from "@/utils/hooks/useBookings";
+import { BookingsContext } from "../context/BookingsContext";
 
 const NavBar = () => {
   const { loading, data } = useContext(AuthenticationContext);
-  const { bookings } = useBookings(data?.id);
+  const { bookings } = useContext(BookingsContext);
+
   const { signout } = useAuth();
 
   return (

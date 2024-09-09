@@ -1,5 +1,6 @@
 import NavBar from "./components/NavBar";
-import AuthContext from "./context/AuthContext";
+import AuthenticationProvider from "./context/AuthContext";
+import BookingsProvider from "./context/BookingsContext";
 import "./globals.css";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -17,12 +18,14 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <main className="bg-gray-100 min-h-screen w-screen">
-          <AuthContext>
-            <div className="max-w-screen-2xl m-auto bg-white">
-              <NavBar />
-              {children}
-            </div>
-          </AuthContext>
+          <AuthenticationProvider>
+            <BookingsProvider>
+              <div className="max-w-screen-2xl m-auto bg-white">
+                <NavBar />
+                {children}
+              </div>
+            </BookingsProvider>
+          </AuthenticationProvider>
         </main>
       </body>
     </html>

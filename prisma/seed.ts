@@ -3,6 +3,8 @@ import prisma from "../utils/services/db";
 import type { Cuisine, Location, Restaurant } from "@prisma/client";
 
 async function main() {
+  await prisma.booking.deleteMany();
+  await prisma.bookingsOnTables.deleteMany();
   await prisma.table.deleteMany();
   await prisma.review.deleteMany();
   await prisma.item.deleteMany();
@@ -563,6 +565,17 @@ async function main() {
     restaurants.find(
       (restaurant: Restaurant) => restaurant.name === "3 Mariachis"
     )?.id || 1;
+  const casaMaderaId =
+    restaurants.find(
+      (restaurant: Restaurant) => restaurant.name === "Casa Madera"
+    )?.id || 1;
+  const tacoNtequilaId =
+    restaurants.find(
+      (restaurant: Restaurant) => restaurant.name === "Taco N Tequila"
+    )?.id || 1;
+  const elJefeId =
+    restaurants.find((restaurant: Restaurant) => restaurant.name === "El Jefe")
+      ?.id || 1;
   const canoRestaurantId =
     restaurants.find(
       (restaurant: Restaurant) => restaurant.name === "Cano Restaurant"
@@ -574,9 +587,25 @@ async function main() {
   const stelvioId =
     restaurants.find((restaurant: Restaurant) => restaurant.name === "Stelvio")
       ?.id || 1;
+  const terroniAdelaideId =
+    restaurants.find(
+      (restaurant: Restaurant) => restaurant.name === "Terroni Adelaide"
+    )?.id || 1;
+  const estRestaurantId =
+    restaurants.find(
+      (restaurant: Restaurant) => restaurant.name === "EST Restaurant"
+    )?.id || 1;
   const sofiaId =
     restaurants.find((restaurant: Restaurant) => restaurant.name === "Sofia")
       ?.id || 1;
+  const terroniSudFornoId =
+    restaurants.find(
+      (restaurant: Restaurant) => restaurant.name === "Terroni Sud Forno"
+    )?.id || 1;
+  const ilPadrinoId =
+    restaurants.find(
+      (restaurant: Restaurant) => restaurant.name === "il Padrino"
+    )?.id || 1;
 
   await prisma.item.createMany({
     data: [
@@ -1330,6 +1359,382 @@ async function main() {
       },
       {
         restaurant_id: vivaanId,
+        seats: 2,
+      },
+      {
+        restaurant_id: RamaKrishnaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: RamaKrishnaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: RamaKrishnaId,
+        seats: 2,
+      },
+      {
+        restaurant_id: RamaKrishnaId,
+        seats: 2,
+      },
+      {
+        restaurant_id: coconutLagoonId,
+        seats: 4,
+      },
+      {
+        restaurant_id: coconutLagoonId,
+        seats: 4,
+      },
+      {
+        restaurant_id: coconutLagoonId,
+        seats: 4,
+      },
+      {
+        restaurant_id: lastTrainToDelhiId,
+        seats: 4,
+      },
+      {
+        restaurant_id: lastTrainToDelhiId,
+        seats: 4,
+      },
+      {
+        restaurant_id: lastTrainToDelhiId,
+        seats: 4,
+      },
+      {
+        restaurant_id: lastTrainToDelhiId,
+        seats: 2,
+      },
+      {
+        restaurant_id: lastTrainToDelhiId,
+        seats: 2,
+      },
+      {
+        restaurant_id: adrakYorkvilleId,
+        seats: 4,
+      },
+      {
+        restaurant_id: adrakYorkvilleId,
+        seats: 4,
+      },
+      {
+        restaurant_id: adrakYorkvilleId,
+        seats: 2,
+      },
+      {
+        restaurant_id: curryishTavernId,
+        seats: 4,
+      },
+      {
+        restaurant_id: curryishTavernId,
+        seats: 4,
+      },
+      {
+        restaurant_id: curryishTavernId,
+        seats: 2,
+      },
+      {
+        restaurant_id: curryishTavernId,
+        seats: 2,
+      },
+      {
+        restaurant_id: utsavId,
+        seats: 4,
+      },
+      {
+        restaurant_id: utsavId,
+        seats: 4,
+      },
+      {
+        restaurant_id: utsavId,
+        seats: 4,
+      },
+      {
+        restaurant_id: utsavId,
+        seats: 2,
+      },
+      {
+        restaurant_id: pukkaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: pukkaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: pukkaId,
+        seats: 2,
+      },
+      {
+        restaurant_id: kamasutraIndianId,
+        seats: 4,
+      },
+      {
+        restaurant_id: kamasutraIndianId,
+        seats: 4,
+      },
+      {
+        restaurant_id: kamasutraIndianId,
+        seats: 4,
+      },
+      {
+        restaurant_id: kamasutraIndianId,
+        seats: 2,
+      },
+      {
+        restaurant_id: eldoradoTacoId,
+        seats: 4,
+      },
+      {
+        restaurant_id: eldoradoTacoId,
+        seats: 4,
+      },
+      {
+        restaurant_id: eldoradoTacoId,
+        seats: 2,
+      },
+      {
+        restaurant_id: laBartolaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: laBartolaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: laBartolaId,
+        seats: 2,
+      },
+      {
+        restaurant_id: laBartolaId,
+        seats: 2,
+      },
+      {
+        restaurant_id: elCatrinId,
+        seats: 4,
+      },
+      {
+        restaurant_id: elCatrinId,
+        seats: 4,
+      },
+      {
+        restaurant_id: elCatrinId,
+        seats: 4,
+      },
+      {
+        restaurant_id: mariachisId,
+        seats: 4,
+      },
+      {
+        restaurant_id: mariachisId,
+        seats: 4,
+      },
+      {
+        restaurant_id: mariachisId,
+        seats: 4,
+      },
+      {
+        restaurant_id: mariachisId,
+        seats: 4,
+      },
+      {
+        restaurant_id: mariachisId,
+        seats: 2,
+      },
+      {
+        restaurant_id: casaMaderaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: casaMaderaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: casaMaderaId,
+        seats: 2,
+      },
+      {
+        restaurant_id: casaMaderaId,
+        seats: 2,
+      },
+      {
+        restaurant_id: tacoNtequilaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: tacoNtequilaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: tacoNtequilaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: tacoNtequilaId,
+        seats: 2,
+      },
+      {
+        restaurant_id: elJefeId,
+        seats: 4,
+      },
+      {
+        restaurant_id: elJefeId,
+        seats: 4,
+      },
+      {
+        restaurant_id: elJefeId,
+        seats: 4,
+      },
+      {
+        restaurant_id: elJefeId,
+        seats: 2,
+      },
+      {
+        restaurant_id: canoRestaurantId,
+        seats: 4,
+      },
+      {
+        restaurant_id: canoRestaurantId,
+        seats: 4,
+      },
+      {
+        restaurant_id: canoRestaurantId,
+        seats: 2,
+      },
+      {
+        restaurant_id: canoRestaurantId,
+        seats: 2,
+      },
+      {
+        restaurant_id: bluRistoranteId,
+        seats: 4,
+      },
+      {
+        restaurant_id: bluRistoranteId,
+        seats: 4,
+      },
+      {
+        restaurant_id: bluRistoranteId,
+        seats: 2,
+      },
+      {
+        restaurant_id: bluRistoranteId,
+        seats: 2,
+      },
+      {
+        restaurant_id: bluRistoranteId,
+        seats: 2,
+      },
+      {
+        restaurant_id: stelvioId,
+        seats: 4,
+      },
+      {
+        restaurant_id: stelvioId,
+        seats: 4,
+      },
+      {
+        restaurant_id: stelvioId,
+        seats: 4,
+      },
+      {
+        restaurant_id: stelvioId,
+        seats: 4,
+      },
+      {
+        restaurant_id: stelvioId,
+        seats: 2,
+      },
+      {
+        restaurant_id: stelvioId,
+        seats: 2,
+      },
+      {
+        restaurant_id: terroniAdelaideId,
+        seats: 4,
+      },
+      {
+        restaurant_id: terroniAdelaideId,
+        seats: 4,
+      },
+      {
+        restaurant_id: terroniAdelaideId,
+        seats: 2,
+      },
+      {
+        restaurant_id: terroniAdelaideId,
+        seats: 2,
+      },
+      {
+        restaurant_id: estRestaurantId,
+        seats: 4,
+      },
+      {
+        restaurant_id: estRestaurantId,
+        seats: 4,
+      },
+      {
+        restaurant_id: estRestaurantId,
+        seats: 4,
+      },
+      {
+        restaurant_id: estRestaurantId,
+        seats: 2,
+      },
+      {
+        restaurant_id: estRestaurantId,
+        seats: 2,
+      },
+      {
+        restaurant_id: sofiaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: sofiaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: sofiaId,
+        seats: 4,
+      },
+      {
+        restaurant_id: sofiaId,
+        seats: 2,
+      },
+      {
+        restaurant_id: terroniSudFornoId,
+        seats: 4,
+      },
+      {
+        restaurant_id: terroniSudFornoId,
+        seats: 4,
+      },
+      {
+        restaurant_id: terroniSudFornoId,
+        seats: 2,
+      },
+      {
+        restaurant_id: terroniSudFornoId,
+        seats: 2,
+      },
+      {
+        restaurant_id: terroniSudFornoId,
+        seats: 2,
+      },
+      {
+        restaurant_id: ilPadrinoId,
+        seats: 4,
+      },
+      {
+        restaurant_id: ilPadrinoId,
+        seats: 4,
+      },
+      {
+        restaurant_id: ilPadrinoId,
+        seats: 4,
+      },
+      {
+        restaurant_id: ilPadrinoId,
         seats: 2,
       },
     ],

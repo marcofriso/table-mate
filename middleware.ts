@@ -5,6 +5,7 @@ export async function middleware(request: NextRequest) {
   const jwtToken = request.cookies.get("jwt")?.value;
 
   if (!jwtToken) {
+    console.error("No JWT token found in cookies");
     return NextResponse.redirect(`${process.env.NEXT_PUBLIC_FRONTEND_SERVER}/`);
   }
 
@@ -13,10 +14,8 @@ export async function middleware(request: NextRequest) {
   try {
     await jose.jwtVerify(jwtToken, secret);
   } catch (error) {
-    return NextResponse.json(
-      { errorMessage: "Unauthorized request - 2" },
-      { status: 401 }
-    );
+    console.error("Invalid JWT token", error);
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_FRONTEND_SERVER}/`);
   }
 }
 

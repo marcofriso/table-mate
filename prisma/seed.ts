@@ -18,18 +18,18 @@ async function main() {
   });
 
   await prisma.cuisine.createMany({
-    data: [{ name: "indian" }, { name: "italian" }, { name: "mexican" }],
+    data: [{ name: "italian" }, { name: "mexican" }, { name: "indian" }],
   });
 
   const locations = await prisma.location.findMany();
   const cuisines = await prisma.cuisine.findMany();
 
-  const indianCuisineId =
-    cuisines.find((cuisine: Cuisine) => cuisine.name === "indian")?.id || 1;
-  const mexicanCuisineId =
-    cuisines.find((cuisine: Cuisine) => cuisine.name === "mexican")?.id || 1;
   const italianCuisineId =
     cuisines.find((cuisine: Cuisine) => cuisine.name === "italian")?.id || 1;
+  const mexicanCuisineId =
+    cuisines.find((cuisine: Cuisine) => cuisine.name === "mexican")?.id || 1;
+  const indianCuisineId =
+    cuisines.find((cuisine: Cuisine) => cuisine.name === "indian")?.id || 1;
 
   const ottawaLocationId =
     locations.find((location: Location) => location.name === "ottawa")?.id || 1;
@@ -42,6 +42,304 @@ async function main() {
 
   await prisma.restaurant.createMany({
     data: [
+      // ITALIAN //
+      {
+        name: "Cano Restaurant",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/2/43463549.jpg",
+        price: PRICE.REGULAR,
+        description:
+          "Our back patio has now officially reopened for FOOD SERVICE only. Drinks can be ordered and consumed at the bar before, during, or after dinner service.",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/43463554.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/43463742.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/43463745.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/43463748.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/43463750.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/43463751.jpg",
+        ],
+        open_time: "13:00:00.000Z",
+        close_time: "21:00:00.000Z",
+        slug: "cano-restaurant-ottawa",
+        location_id: ottawaLocationId,
+        cuisine_id: italianCuisineId,
+      },
+      {
+        name: "Blu Ristorante",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/2/47350167.jpg",
+        price: PRICE.EXPENSIVE,
+        description:
+          "Victorian Building with two floors of dining space and large side and front patio. Tastefully designed to host your special event, romantic dinner, corporate buyout or a celebration of any sort.",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/25305566.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/25305567.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/25305568.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/25305569.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/25305570.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/30091570.jpg",
+        ],
+        open_time: "15:00:00.000Z",
+        close_time: "22:00:00.000Z",
+        slug: "blu-ristorante-ottawa",
+        location_id: ottawaLocationId,
+        cuisine_id: italianCuisineId,
+      },
+      {
+        name: "Stelvio",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/3/50557365.jpg",
+        price: PRICE.REGULAR,
+        description:
+          "Stelvio on Dundas West is an authentic Italian restaurant serving classic old world fare using traditional recipes and ingredients. Recipes have been fine-tuned to satisfy the palate of the modern guest, and fresh meals are prepared daily.",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/3/26374971.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/26374974.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/26374975.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/26374976.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/50557389.jpg",
+        ],
+        open_time: "13:00:00.000Z",
+        close_time: "21:00:00.000Z",
+        slug: "stelvio-ottawa",
+        location_id: ottawaLocationId,
+        cuisine_id: italianCuisineId,
+      },
+      {
+        name: "Terroni Adelaide",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/3/46827195.jpg",
+        price: PRICE.REGULAR,
+        description:
+          "Terroni Adelaide’s multi-level location is located in Toronto’s historic York County Court House circa 1853.",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/42309468.png",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/42309469.png",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/42309470.png",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/42309472.png",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/42309474.png",
+        ],
+        open_time: "12:00:00.000Z",
+        close_time: "18:00:00.000Z",
+        slug: "terroni-adelaide-niagara",
+        location_id: niagaraLocationId,
+        cuisine_id: italianCuisineId,
+      },
+      {
+        name: "EST Restaurant",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/3/49169798.jpg",
+        price: PRICE.CHEAP,
+        description:
+          "ēst is a modern, newly reopened restaurant serving Italian-French courses, captivating cocktails and wine.",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/49253937.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/49253940.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/49253941.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/49415599.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/49415604.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/49696221.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/49999039.jpg",
+        ],
+        open_time: "09:00:00.000Z",
+        close_time: "21:00:00.000Z",
+        slug: "est-restaurant-niagara",
+        location_id: niagaraLocationId,
+        cuisine_id: italianCuisineId,
+      },
+      {
+        name: "Sofia",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/25558850.jpg",
+        price: PRICE.EXPENSIVE,
+        description:
+          "Tapping into true Italian tastes, the menu starts with a selection of antipasti including a citrus salad and grilled octopus, and a plentiful selection of crudo. ",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/25629442.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/25636273.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/25679656.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/25825772.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/26011606.jpg",
+        ],
+        open_time: "13:00:00.000Z",
+        close_time: "21:00:00.000Z",
+        slug: "sofia-toronto",
+        location_id: torontoLocationId,
+        cuisine_id: italianCuisineId,
+      },
+      {
+        name: "Terroni Sud Forno",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/3/49463645.png",
+        price: PRICE.REGULAR,
+        description:
+          "Spaccio West, near the Lower Junction on the West Toronto Railpath, acts as the backstage to the main show taking place at all Terroni locations.",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/48741813.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/48741816.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/48741821.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/48741826.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/48741827.jpg",
+        ],
+        open_time: "10:00:00.000Z",
+        close_time: "21:00:00.000Z",
+        slug: "terroni-sud-forno-produzione-e-spaccio-toronto",
+        location_id: torontoLocationId,
+        cuisine_id: italianCuisineId,
+      },
+      {
+        name: "il Padrino",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/3/49616181.jpg",
+        price: PRICE.CHEAP,
+        description:
+          "Welcome to the newest edition to College street iL PADRINO Ristorante has joined the list of Italian restaurants where Chef Connie award winning Italian Chef makes every Italian dish with love like no other. ",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/49494556.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/49494562.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/49494563.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/3/49494887.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/3/49533502.jpg",
+        ],
+        open_time: "07:00:00.000Z",
+        close_time: "21:00:00.000Z",
+        slug: "il-padrino-toronto",
+        location_id: torontoLocationId,
+        cuisine_id: italianCuisineId,
+      },
+      // MEXICAN //
+      {
+        name: "Eldorado Taco",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/2/42557297.jpg",
+        price: PRICE.REGULAR,
+        description:
+          "Eldorado Taco restaurant is excited to serve you traditional Mexican cuisine, re-imagined with a distinct modern flair, in a stylish setting on Preston street. Striving to bring you some of Ottawa’s best Tacos, margaritas and Tequila. Reserve your table now!",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/29501707.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/29501713.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/3/29501715.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/42557295.jpg",
+        ],
+        open_time: "16:00:00.000Z",
+        close_time: "19:00:00.000Z",
+        slug: "eldorado-taco-ottawa",
+        location_id: ottawaLocationId,
+        cuisine_id: mexicanCuisineId,
+      },
+      {
+        name: "La Bartola",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/2/48981502.jpg",
+        price: PRICE.EXPENSIVE,
+        description:
+          "At La Bartola, we inspire a passion for authentic Mexican flavours. We use simple, fresh, and high-quality local & Mexican ingredients to craft delicious and thoughtful food.",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/48981480.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/48981483.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/48981485.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/48981487.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/48981490.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/48981492.jpg",
+        ],
+        open_time: "12:00:00.000Z",
+        close_time: "21:00:00.000Z",
+        slug: "la-bartola-ottawa",
+        location_id: ottawaLocationId,
+        cuisine_id: mexicanCuisineId,
+      },
+      {
+        name: "El Catrin",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/2/28028883.png",
+        price: PRICE.CHEAP,
+        description:
+          "Reservations are booked for indoors only. Seating time will be limited to two hours maximum.",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/25770621.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/25770622.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/25770624.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/25770625.jpg",
+        ],
+        open_time: "09:00:00.000Z",
+        close_time: "21:00:00.000Z",
+        slug: "el-catrin-ottawa",
+        location_id: ottawaLocationId,
+        cuisine_id: mexicanCuisineId,
+      },
+      {
+        name: "3 Mariachis",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/2/32449465.jpg",
+        price: PRICE.CHEAP,
+        description:
+          "Specializing in the preparation of high quality Mexican food. Our vibrant décor, carefully selected menu, great staff and exciting entertainment will ensure that you are treated to a unique dining experience.",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/32490939.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/32490987.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/32507838.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/1/41724689.jpg",
+        ],
+        open_time: "09:00:00.000Z",
+        close_time: "21:00:00.000Z",
+        slug: "el-catrin-toronto",
+        location_id: torontoLocationId,
+        cuisine_id: mexicanCuisineId,
+      },
+      {
+        name: "Casa Madera",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/3/47744844.jpg",
+        price: PRICE.EXPENSIVE,
+        description:
+          "The first location in Canada, from famed restauranteurs Noble 33, welcomes patrons into an immersive dining experience.",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/47745080.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/47745081.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/47745093.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/47745097.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/47745144.jpg",
+        ],
+        open_time: "15:00:00.000Z",
+        close_time: "21:00:00.000Z",
+        slug: "casa-madera-toronto",
+        location_id: torontoLocationId,
+        cuisine_id: mexicanCuisineId,
+      },
+      {
+        name: "Taco N Tequila",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/3/47429858.jpg",
+        price: PRICE.CHEAP,
+        description:
+          "As a family owned business, our goal is simple: to consistently deliver fresh and delicious Mexican flavours in a FUN and friendly atmosphere with the best service around!",
+        images: [
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/47600418.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/47429797.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/47429802.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/47745097.jpg",
+          "https://resizer.otstatic.com/v2/photos/xlarge/2/47429814.jpg",
+        ],
+        open_time: "10:00:00.000Z",
+        close_time: "21:00:00.000Z",
+        slug: "casa-madera-niagara",
+        location_id: niagaraLocationId,
+        cuisine_id: mexicanCuisineId,
+      },
+      {
+        name: "El Jefe",
+        main_image:
+          "https://resizer.otstatic.com/v2/photos/wide-huge/3/47710768.jpg",
+        price: PRICE.CHEAP,
+        description:
+          "Lively cantina serving Mexican favorites & potent margaritas in a vibrant, airy space with murals.",
+        images: [],
+        open_time: "10:00:00.000Z",
+        close_time: "21:00:00.000Z",
+        slug: "el-jefe-niagara",
+        location_id: niagaraLocationId,
+        cuisine_id: mexicanCuisineId,
+      },
       // INDIAN //
       {
         name: "Vivaan - fine Indian",
@@ -211,304 +509,6 @@ async function main() {
         slug: "kamasutra-indian-restaurant-and-wine-bar-niagara",
         location_id: niagaraLocationId,
         cuisine_id: indianCuisineId,
-      },
-      // MEXICAN //
-      {
-        name: "Eldorado Taco",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/2/42557297.jpg",
-        price: PRICE.REGULAR,
-        description:
-          "Eldorado Taco restaurant is excited to serve you traditional Mexican cuisine, re-imagined with a distinct modern flair, in a stylish setting on Preston street. Striving to bring you some of Ottawa’s best Tacos, margaritas and Tequila. Reserve your table now!",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/29501707.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/29501713.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/3/29501715.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/42557295.jpg",
-        ],
-        open_time: "16:00:00.000Z",
-        close_time: "19:00:00.000Z",
-        slug: "eldorado-taco-ottawa",
-        location_id: ottawaLocationId,
-        cuisine_id: mexicanCuisineId,
-      },
-      {
-        name: "La Bartola",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/2/48981502.jpg",
-        price: PRICE.EXPENSIVE,
-        description:
-          "At La Bartola, we inspire a passion for authentic Mexican flavours. We use simple, fresh, and high-quality local & Mexican ingredients to craft delicious and thoughtful food.",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/48981480.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/48981483.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/48981485.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/48981487.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/48981490.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/48981492.jpg",
-        ],
-        open_time: "12:00:00.000Z",
-        close_time: "21:00:00.000Z",
-        slug: "la-bartola-ottawa",
-        location_id: ottawaLocationId,
-        cuisine_id: mexicanCuisineId,
-      },
-      {
-        name: "El Catrin",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/2/28028883.png",
-        price: PRICE.CHEAP,
-        description:
-          "Reservations are booked for indoors only. Seating time will be limited to two hours maximum.",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/25770621.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/25770622.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/25770624.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/25770625.jpg",
-        ],
-        open_time: "09:00:00.000Z",
-        close_time: "21:00:00.000Z",
-        slug: "el-catrin-ottawa",
-        location_id: ottawaLocationId,
-        cuisine_id: mexicanCuisineId,
-      },
-      {
-        name: "3 Mariachis",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/2/32449465.jpg",
-        price: PRICE.CHEAP,
-        description:
-          "Specializing in the preparation of high quality Mexican food. Our vibrant décor, carefully selected menu, great staff and exciting entertainment will ensure that you are treated to a unique dining experience.",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/32490939.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/32490987.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/32507838.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/41724689.jpg",
-        ],
-        open_time: "09:00:00.000Z",
-        close_time: "21:00:00.000Z",
-        slug: "el-catrin-toronto",
-        location_id: torontoLocationId,
-        cuisine_id: mexicanCuisineId,
-      },
-      {
-        name: "Casa Madera",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/3/47744844.jpg",
-        price: PRICE.EXPENSIVE,
-        description:
-          "The first location in Canada, from famed restauranteurs Noble 33, welcomes patrons into an immersive dining experience.",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/47745080.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/47745081.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/47745093.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/47745097.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/47745144.jpg",
-        ],
-        open_time: "15:00:00.000Z",
-        close_time: "21:00:00.000Z",
-        slug: "casa-madera-toronto",
-        location_id: torontoLocationId,
-        cuisine_id: mexicanCuisineId,
-      },
-      {
-        name: "Taco N Tequila",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/3/47429858.jpg",
-        price: PRICE.CHEAP,
-        description:
-          "As a family owned business, our goal is simple: to consistently deliver fresh and delicious Mexican flavours in a FUN and friendly atmosphere with the best service around!",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/47600418.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/47429797.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/47429802.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/47745097.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/47429814.jpg",
-        ],
-        open_time: "10:00:00.000Z",
-        close_time: "21:00:00.000Z",
-        slug: "casa-madera-niagara",
-        location_id: niagaraLocationId,
-        cuisine_id: mexicanCuisineId,
-      },
-      {
-        name: "El Jefe",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/3/47710768.jpg",
-        price: PRICE.CHEAP,
-        description:
-          "Lively cantina serving Mexican favorites & potent margaritas in a vibrant, airy space with murals.",
-        images: [],
-        open_time: "10:00:00.000Z",
-        close_time: "21:00:00.000Z",
-        slug: "el-jefe-niagara",
-        location_id: niagaraLocationId,
-        cuisine_id: mexicanCuisineId,
-      },
-      // ITALIAN //
-      {
-        name: "Cano Restaurant",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/2/43463549.jpg",
-        price: PRICE.REGULAR,
-        description:
-          "Our back patio has now officially reopened for FOOD SERVICE only. Drinks can be ordered and consumed at the bar before, during, or after dinner service.",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/43463554.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/43463742.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/43463745.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/43463748.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/43463750.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/43463751.jpg",
-        ],
-        open_time: "13:00:00.000Z",
-        close_time: "21:00:00.000Z",
-        slug: "cano-restaurant-ottawa",
-        location_id: ottawaLocationId,
-        cuisine_id: italianCuisineId,
-      },
-      {
-        name: "Blu Ristorante",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/2/47350167.jpg",
-        price: PRICE.EXPENSIVE,
-        description:
-          "Victorian Building with two floors of dining space and large side and front patio. Tastefully designed to host your special event, romantic dinner, corporate buyout or a celebration of any sort.",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/25305566.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/25305567.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/25305568.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/25305569.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/25305570.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/30091570.jpg",
-        ],
-        open_time: "15:00:00.000Z",
-        close_time: "22:00:00.000Z",
-        slug: "blu-ristorante-ottawa",
-        location_id: ottawaLocationId,
-        cuisine_id: italianCuisineId,
-      },
-      {
-        name: "Stelvio",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/3/50557365.jpg",
-        price: PRICE.REGULAR,
-        description:
-          "Stelvio on Dundas West is an authentic Italian restaurant serving classic old world fare using traditional recipes and ingredients. Recipes have been fine-tuned to satisfy the palate of the modern guest, and fresh meals are prepared daily.",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/3/26374971.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/26374974.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/26374975.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/26374976.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/50557389.jpg",
-        ],
-        open_time: "13:00:00.000Z",
-        close_time: "21:00:00.000Z",
-        slug: "stelvio-ottawa",
-        location_id: ottawaLocationId,
-        cuisine_id: italianCuisineId,
-      },
-      {
-        name: "Terroni Adelaide",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/3/46827195.jpg",
-        price: PRICE.REGULAR,
-        description:
-          "Terroni Adelaide’s multi-level location is located in Toronto’s historic York County Court House circa 1853.",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/42309468.png",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/42309469.png",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/42309470.png",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/42309472.png",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/42309474.png",
-        ],
-        open_time: "12:00:00.000Z",
-        close_time: "18:00:00.000Z",
-        slug: "terroni-adelaide-niagara",
-        location_id: niagaraLocationId,
-        cuisine_id: italianCuisineId,
-      },
-      {
-        name: "EST Restaurant",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/3/49169798.jpg",
-        price: PRICE.CHEAP,
-        description:
-          "ēst is a modern, newly reopened restaurant serving Italian-French courses, captivating cocktails and wine.",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/49253937.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/49253940.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/49253941.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/49415599.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/49415604.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/49696221.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/49999039.jpg",
-        ],
-        open_time: "09:00:00.000Z",
-        close_time: "21:00:00.000Z",
-        slug: "est-restaurant-niagara",
-        location_id: niagaraLocationId,
-        cuisine_id: italianCuisineId,
-      },
-      {
-        name: "Sofia",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/xlarge/1/25558850.jpg",
-        price: PRICE.EXPENSIVE,
-        description:
-          "Tapping into true Italian tastes, the menu starts with a selection of antipasti including a citrus salad and grilled octopus, and a plentiful selection of crudo. ",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/25629442.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/25636273.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/25679656.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/25825772.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/26011606.jpg",
-        ],
-        open_time: "13:00:00.000Z",
-        close_time: "21:00:00.000Z",
-        slug: "sofia-toronto",
-        location_id: torontoLocationId,
-        cuisine_id: italianCuisineId,
-      },
-      {
-        name: "Terroni Sud Forno",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/3/49463645.png",
-        price: PRICE.REGULAR,
-        description:
-          "Spaccio West, near the Lower Junction on the West Toronto Railpath, acts as the backstage to the main show taking place at all Terroni locations.",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/48741813.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/48741816.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/48741821.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/48741826.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/48741827.jpg",
-        ],
-        open_time: "10:00:00.000Z",
-        close_time: "21:00:00.000Z",
-        slug: "terroni-sud-forno-produzione-e-spaccio-toronto",
-        location_id: torontoLocationId,
-        cuisine_id: italianCuisineId,
-      },
-      {
-        name: "il Padrino",
-        main_image:
-          "https://resizer.otstatic.com/v2/photos/wide-huge/3/49616181.jpg",
-        price: PRICE.CHEAP,
-        description:
-          "Welcome to the newest edition to College street iL PADRINO Ristorante has joined the list of Italian restaurants where Chef Connie award winning Italian Chef makes every Italian dish with love like no other. ",
-        images: [
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/49494556.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/49494562.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/2/49494563.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/3/49494887.jpg",
-          "https://resizer.otstatic.com/v2/photos/xlarge/3/49533502.jpg",
-        ],
-        open_time: "07:00:00.000Z",
-        close_time: "21:00:00.000Z",
-        slug: "il-padrino-toronto",
-        location_id: torontoLocationId,
-        cuisine_id: italianCuisineId,
       },
     ],
   });
@@ -1122,6 +1122,28 @@ async function main() {
       email: "cassidy@hotmail.com",
       city: "toronto",
       password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
+      phone: "1112223333",
+    },
+  });
+
+  await prisma.user.create({
+    data: {
+      first_name: "Antonio",
+      last_name: "Cazzullo",
+      email: "antonio@cazzullo.com",
+      city: "prato",
+      password: "$2b$10$YwepSc7Ox0ukyAb9rYSLHeSK2WCSNIWdwemVyTzWKixFmCbHCHH/W",
+      phone: "1112223333",
+    },
+  });
+
+  await prisma.user.create({
+    data: {
+      first_name: "John",
+      last_name: "Doe",
+      email: "john.doe@hotmail.com",
+      city: "las vegas",
+      password: "$2b$10$yzbW5vB3U8Ek6P/y9dNIoObYGaDXWksOAg4aYKfDzjMQPRWakCtc2",
       phone: "1112223333",
     },
   });

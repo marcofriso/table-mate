@@ -6,7 +6,9 @@ import AuthModal from "./AuthModal";
 const AuthModalButton = ({ isSignin }: { isSignin: boolean }) => {
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const isSigninContent = (signinContent: string, signupContent: string) => {
     return isSignin ? signinContent : signupContent;

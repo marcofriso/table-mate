@@ -92,6 +92,19 @@ const SearchSideBar = ({
           ))}
         </div>
       </div>
+      <div className="mt-3 pb-4">
+        <div className="flex">
+          <Link
+            href={{
+              pathname: "/search",
+              query: {},
+            }}
+            className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded shadow"
+          >
+            Reset
+          </Link>
+        </div>
+      </div>
     </>
   );
 };

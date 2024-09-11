@@ -24,7 +24,9 @@ const AuthModal = ({
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { loading, error } = useContext(AuthenticationContext);
+  const { loading, error, data, setAuthState } = useContext(
+    AuthenticationContext
+  );
 
   const [inputs, setInputs] = useState({
     firstName: "",
@@ -38,7 +40,25 @@ const AuthModal = ({
 
   const { signin, signup } = useAuth();
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    if (error) {
+      setAuthState({
+        data,
+        error: null,
+        loading: false,
+      });
+
+      setInputs({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        city: "",
+        password: "",
+      });
+    }
+  };
 
   const isWiderThan480px = useMediaQuery("(min-width:480px)");
   const isShorterThan600px = useMediaQuery("(max-height:600px)");
@@ -87,7 +107,9 @@ const AuthModal = ({
     }
   }, [inputs, isSignin]);
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
     if (isSignin) {
       signin({ email: inputs.email, password: inputs.password }, handleClose);
     } else {

@@ -14,7 +14,7 @@ async function main() {
   await prisma.user.deleteMany();
 
   await prisma.location.createMany({
-    data: [{ name: "ottawa" }, { name: "toronto" }, { name: "niagara" }],
+    data: [{ name: "rome" }, { name: "prague" }, { name: "berlin" }],
   });
 
   await prisma.cuisine.createMany({
@@ -31,14 +31,12 @@ async function main() {
   const indianCuisineId =
     cuisines.find((cuisine: Cuisine) => cuisine.name === "indian")?.id || 1;
 
-  const ottawaLocationId =
-    locations.find((location: Location) => location.name === "ottawa")?.id || 1;
-  const torontoLocationId =
-    locations.find((location: Location) => location.name === "toronto")?.id ||
-    1;
-  const niagaraLocationId =
-    locations.find((location: Location) => location.name === "niagara")?.id ||
-    1;
+  const romeLocationId =
+    locations.find((location: Location) => location.name === "rome")?.id || 1;
+  const pragueLocationId =
+    locations.find((location: Location) => location.name === "prague")?.id || 1;
+  const berlinLocationId =
+    locations.find((location: Location) => location.name === "berlin")?.id || 1;
 
   await prisma.restaurant.createMany({
     data: [
@@ -60,8 +58,8 @@ async function main() {
         ],
         open_time: "13:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "cano-restaurant-ottawa",
-        location_id: ottawaLocationId,
+        slug: "cano-restaurant-rome",
+        location_id: romeLocationId,
         cuisine_id: italianCuisineId,
       },
       {
@@ -81,8 +79,8 @@ async function main() {
         ],
         open_time: "15:00:00.000Z",
         close_time: "22:00:00.000Z",
-        slug: "blu-ristorante-ottawa",
-        location_id: ottawaLocationId,
+        slug: "blu-ristorante-rome",
+        location_id: romeLocationId,
         cuisine_id: italianCuisineId,
       },
       {
@@ -101,17 +99,17 @@ async function main() {
         ],
         open_time: "13:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "stelvio-ottawa",
-        location_id: ottawaLocationId,
+        slug: "stelvio-rome",
+        location_id: romeLocationId,
         cuisine_id: italianCuisineId,
       },
       {
-        name: "Terroni Adelaide",
+        name: "Terra Adelaide",
         main_image:
           "https://resizer.otstatic.com/v2/photos/wide-huge/3/46827195.jpg",
         price: PRICE.REGULAR,
         description:
-          "Terroni Adelaide’s multi-level location is located in Toronto’s historic York County Court House circa 1853.",
+          "Terra Adelaide’s multi-level location is located in Prague’s historic York County Court House circa 1853.",
         images: [
           "https://resizer.otstatic.com/v2/photos/xlarge/2/42309468.png",
           "https://resizer.otstatic.com/v2/photos/xlarge/2/42309469.png",
@@ -121,8 +119,8 @@ async function main() {
         ],
         open_time: "12:00:00.000Z",
         close_time: "18:00:00.000Z",
-        slug: "terroni-adelaide-niagara",
-        location_id: niagaraLocationId,
+        slug: "terra-adelaide-berlin",
+        location_id: berlinLocationId,
         cuisine_id: italianCuisineId,
       },
       {
@@ -143,8 +141,8 @@ async function main() {
         ],
         open_time: "09:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "est-restaurant-niagara",
-        location_id: niagaraLocationId,
+        slug: "est-restaurant-berlin",
+        location_id: berlinLocationId,
         cuisine_id: italianCuisineId,
       },
       {
@@ -163,17 +161,17 @@ async function main() {
         ],
         open_time: "13:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "sofia-toronto",
-        location_id: torontoLocationId,
+        slug: "sofia-prague",
+        location_id: pragueLocationId,
         cuisine_id: italianCuisineId,
       },
       {
-        name: "Terroni Sud Forno",
+        name: "Terra Sud Forno",
         main_image:
           "https://resizer.otstatic.com/v2/photos/wide-huge/3/49463645.png",
         price: PRICE.REGULAR,
         description:
-          "Spaccio West, near the Lower Junction on the West Toronto Railpath, acts as the backstage to the main show taking place at all Terroni locations.",
+          "Spaccio West, near the Lower Junction on the West Prague Railpath, acts as the backstage to the main show taking place at all Terra locations.",
         images: [
           "https://resizer.otstatic.com/v2/photos/xlarge/2/48741813.jpg",
           "https://resizer.otstatic.com/v2/photos/xlarge/2/48741816.jpg",
@@ -183,8 +181,8 @@ async function main() {
         ],
         open_time: "10:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "terroni-sud-forno-produzione-e-spaccio-toronto",
-        location_id: torontoLocationId,
+        slug: "terra-sud-forno-produzione-e-spaccio-prague",
+        location_id: pragueLocationId,
         cuisine_id: italianCuisineId,
       },
       {
@@ -203,8 +201,8 @@ async function main() {
         ],
         open_time: "07:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "il-padrino-toronto",
-        location_id: torontoLocationId,
+        slug: "il-padrino-prague",
+        location_id: pragueLocationId,
         cuisine_id: italianCuisineId,
       },
       // MEXICAN //
@@ -214,7 +212,7 @@ async function main() {
           "https://resizer.otstatic.com/v2/photos/wide-huge/2/42557297.jpg",
         price: PRICE.REGULAR,
         description:
-          "Eldorado Taco restaurant is excited to serve you traditional Mexican cuisine, re-imagined with a distinct modern flair, in a stylish setting on Preston street. Striving to bring you some of Ottawa’s best Tacos, margaritas and Tequila. Reserve your table now!",
+          "Eldorado Taco restaurant is excited to serve you traditional Mexican cuisine, re-imagined with a distinct modern flair, in a stylish setting on Preston street. Striving to bring you some of Rome’s best Tacos, margaritas and Tequila. Reserve your table now!",
         images: [
           "https://resizer.otstatic.com/v2/photos/xlarge/1/29501707.jpg",
           "https://resizer.otstatic.com/v2/photos/xlarge/1/29501713.jpg",
@@ -223,8 +221,8 @@ async function main() {
         ],
         open_time: "16:00:00.000Z",
         close_time: "19:00:00.000Z",
-        slug: "eldorado-taco-ottawa",
-        location_id: ottawaLocationId,
+        slug: "eldorado-taco-rome",
+        location_id: romeLocationId,
         cuisine_id: mexicanCuisineId,
       },
       {
@@ -244,8 +242,8 @@ async function main() {
         ],
         open_time: "12:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "la-bartola-ottawa",
-        location_id: ottawaLocationId,
+        slug: "la-bartola-rome",
+        location_id: romeLocationId,
         cuisine_id: mexicanCuisineId,
       },
       {
@@ -263,8 +261,8 @@ async function main() {
         ],
         open_time: "09:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "el-catrin-ottawa",
-        location_id: ottawaLocationId,
+        slug: "el-catrin-rome",
+        location_id: romeLocationId,
         cuisine_id: mexicanCuisineId,
       },
       {
@@ -282,8 +280,8 @@ async function main() {
         ],
         open_time: "09:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "el-catrin-toronto",
-        location_id: torontoLocationId,
+        slug: "el-catrin-prague",
+        location_id: pragueLocationId,
         cuisine_id: mexicanCuisineId,
       },
       {
@@ -302,8 +300,8 @@ async function main() {
         ],
         open_time: "15:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "casa-madera-toronto",
-        location_id: torontoLocationId,
+        slug: "casa-madera-prague",
+        location_id: pragueLocationId,
         cuisine_id: mexicanCuisineId,
       },
       {
@@ -322,8 +320,8 @@ async function main() {
         ],
         open_time: "10:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "casa-madera-niagara",
-        location_id: niagaraLocationId,
+        slug: "casa-madera-berlin",
+        location_id: berlinLocationId,
         cuisine_id: mexicanCuisineId,
       },
       {
@@ -336,8 +334,8 @@ async function main() {
         images: [],
         open_time: "10:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "el-jefe-niagara",
-        location_id: niagaraLocationId,
+        slug: "el-jefe-berlin",
+        location_id: berlinLocationId,
         cuisine_id: mexicanCuisineId,
       },
       // INDIAN //
@@ -356,8 +354,8 @@ async function main() {
         ],
         open_time: "14:30:00.000Z",
         close_time: "21:30:00.000Z",
-        slug: "vivaan-fine-indian-cuisine-ottawa",
-        location_id: ottawaLocationId,
+        slug: "vivaan-fine-indian-cuisine-rome",
+        location_id: romeLocationId,
         cuisine_id: indianCuisineId,
       },
       {
@@ -375,8 +373,8 @@ async function main() {
         ],
         open_time: "12:30:00.000Z",
         close_time: "22:00:00.000Z",
-        slug: "ramakrishna-indian-restaurant-ottawa",
-        location_id: ottawaLocationId,
+        slug: "ramakrishna-indian-restaurant-rome",
+        location_id: romeLocationId,
         cuisine_id: indianCuisineId,
       },
       {
@@ -394,8 +392,8 @@ async function main() {
         ],
         open_time: "17:30:00.000Z",
         close_time: "22:00:00.000Z",
-        slug: "coconut-lagoon-ottawa",
-        location_id: ottawaLocationId,
+        slug: "coconut-lagoon-rome",
+        location_id: romeLocationId,
         cuisine_id: indianCuisineId,
       },
       {
@@ -404,7 +402,7 @@ async function main() {
           "https://resizer.otstatic.com/v2/photos/wide-huge/3/26429498.jpg",
         price: PRICE.REGULAR,
         description:
-          "Welcome to Last Train to Delhi. We are a progressive Indian restaurant in the beautiful Glebe community in Ottawa. Our speciality is Northern Indian food, classics like Murg Mahkini and some modern dishes like Crispy Shrimp. We are a small cozy restaurant, so make sure that you reserve through OpenTable.",
+          "Welcome to Last Train to Delhi. We are a progressive Indian restaurant in the beautiful Glebe community in Rome. Our speciality is Northern Indian food, classics like Murg Mahkini and some modern dishes like Crispy Shrimp. We are a small cozy restaurant, so make sure that you reserve through OpenTable.",
         images: [
           "https://resizer.otstatic.com/v2/photos/xlarge/1/29477326.jpg",
           "https://resizer.otstatic.com/v2/photos/xlarge/1/29777084.jpg",
@@ -413,8 +411,8 @@ async function main() {
         ],
         open_time: "10:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "last-train-to-delhi-ottawa",
-        location_id: ottawaLocationId,
+        slug: "last-train-to-delhi-rome",
+        location_id: romeLocationId,
         cuisine_id: indianCuisineId,
       },
       {
@@ -432,8 +430,8 @@ async function main() {
         ],
         open_time: "16:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "adrak-yorkville-toronto",
-        location_id: torontoLocationId,
+        slug: "adrak-yorkville-prague",
+        location_id: pragueLocationId,
         cuisine_id: indianCuisineId,
       },
       {
@@ -451,8 +449,8 @@ async function main() {
         ],
         open_time: "10:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "curryish-tavern-toronto",
-        location_id: torontoLocationId,
+        slug: "curryish-tavern-prague",
+        location_id: pragueLocationId,
         cuisine_id: indianCuisineId,
       },
       {
@@ -468,8 +466,8 @@ async function main() {
         ],
         open_time: "14:00:00.000Z",
         close_time: "19:00:00.000Z",
-        slug: "utsav-toronto",
-        location_id: torontoLocationId,
+        slug: "utsav-prague",
+        location_id: pragueLocationId,
         cuisine_id: indianCuisineId,
       },
       {
@@ -487,8 +485,8 @@ async function main() {
         ],
         open_time: "12:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "pukka-niagara",
-        location_id: niagaraLocationId,
+        slug: "pukka-berlin",
+        location_id: berlinLocationId,
         cuisine_id: indianCuisineId,
       },
       {
@@ -497,7 +495,7 @@ async function main() {
           "https://resizer.otstatic.com/v2/photos/xlarge/1/25602522.jpg",
         price: PRICE.CHEAP,
         description:
-          "This elegant fine dining Indian Restaurant has been satisfying the Indian tandoori and curry cravings for 12 years in Toronto.",
+          "This elegant fine dining Indian Restaurant has been satisfying the Indian tandoori and curry cravings for 12 years in Prague.",
         images: [
           "https://resizer.otstatic.com/v2/photos/xlarge/3/31854185.jpg",
           "https://resizer.otstatic.com/v2/photos/xlarge/3/31854188.jpg",
@@ -506,8 +504,8 @@ async function main() {
         ],
         open_time: "10:00:00.000Z",
         close_time: "21:00:00.000Z",
-        slug: "kamasutra-indian-restaurant-and-wine-bar-niagara",
-        location_id: niagaraLocationId,
+        slug: "kamasutra-indian-restaurant-and-wine-bar-berlin",
+        location_id: berlinLocationId,
         cuisine_id: indianCuisineId,
       },
     ],
@@ -587,9 +585,9 @@ async function main() {
   const stelvioId =
     restaurants.find((restaurant: Restaurant) => restaurant.name === "Stelvio")
       ?.id || 1;
-  const terroniAdelaideId =
+  const terraAdelaideId =
     restaurants.find(
-      (restaurant: Restaurant) => restaurant.name === "Terroni Adelaide"
+      (restaurant: Restaurant) => restaurant.name === "Terra Adelaide"
     )?.id || 1;
   const estRestaurantId =
     restaurants.find(
@@ -598,9 +596,9 @@ async function main() {
   const sofiaId =
     restaurants.find((restaurant: Restaurant) => restaurant.name === "Sofia")
       ?.id || 1;
-  const terroniSudFornoId =
+  const terraSudFornoId =
     restaurants.find(
-      (restaurant: Restaurant) => restaurant.name === "Terroni Sud Forno"
+      (restaurant: Restaurant) => restaurant.name === "Terra Sud Forno"
     )?.id || 1;
   const ilPadrinoId =
     restaurants.find(
@@ -1087,7 +1085,7 @@ async function main() {
       first_name: "Laith",
       last_name: "Harb",
       email: "laith@hotmail.com",
-      city: "ottawa",
+      city: "rome",
       password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
       phone: "1112223333",
     },
@@ -1098,7 +1096,7 @@ async function main() {
       first_name: "Josh",
       last_name: "Allen",
       email: "josh@hotmail.com",
-      city: "toronto",
+      city: "prague",
       password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
       phone: "1112223333",
     },
@@ -1109,7 +1107,7 @@ async function main() {
       first_name: "LeBron",
       last_name: "James",
       email: "lebron@hotmail.com",
-      city: "niagara",
+      city: "berlin",
       password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
       phone: "1112223333",
     },
@@ -1120,7 +1118,7 @@ async function main() {
       first_name: "Cassidy",
       last_name: "Marksom",
       email: "cassidy@hotmail.com",
-      city: "toronto",
+      city: "prague",
       password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
       phone: "1112223333",
     },
@@ -1672,19 +1670,19 @@ async function main() {
         seats: 2,
       },
       {
-        restaurant_id: terroniAdelaideId,
+        restaurant_id: terraAdelaideId,
         seats: 4,
       },
       {
-        restaurant_id: terroniAdelaideId,
+        restaurant_id: terraAdelaideId,
         seats: 4,
       },
       {
-        restaurant_id: terroniAdelaideId,
+        restaurant_id: terraAdelaideId,
         seats: 2,
       },
       {
-        restaurant_id: terroniAdelaideId,
+        restaurant_id: terraAdelaideId,
         seats: 2,
       },
       {
@@ -1724,23 +1722,23 @@ async function main() {
         seats: 2,
       },
       {
-        restaurant_id: terroniSudFornoId,
+        restaurant_id: terraSudFornoId,
         seats: 4,
       },
       {
-        restaurant_id: terroniSudFornoId,
+        restaurant_id: terraSudFornoId,
         seats: 4,
       },
       {
-        restaurant_id: terroniSudFornoId,
+        restaurant_id: terraSudFornoId,
         seats: 2,
       },
       {
-        restaurant_id: terroniSudFornoId,
+        restaurant_id: terraSudFornoId,
         seats: 2,
       },
       {
-        restaurant_id: terroniSudFornoId,
+        restaurant_id: terraSudFornoId,
         seats: 2,
       },
       {

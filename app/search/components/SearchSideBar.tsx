@@ -24,17 +24,17 @@ const SearchSideBar = ({
     {
       price: PRICE.CHEAP,
       label: "€",
-      className: "border w-full text-reg text-center font-light rounded-l p-2",
+      className: "border w-full text-reg text-center rounded-l p-2",
     },
     {
       price: PRICE.REGULAR,
       label: "€€",
-      className: "border w-full text-reg text-center font-light p-2",
+      className: "border w-full text-reg text-center p-2",
     },
     {
       price: PRICE.EXPENSIVE,
       label: "€€€",
-      className: "border w-full text-reg text-center font-light rounded-r p-2",
+      className: "border w-full text-reg text-center rounded-r p-2",
     },
   ];
 
@@ -49,7 +49,9 @@ const SearchSideBar = ({
                 pathname: "/search",
                 query: { ...searchParams, city: location.name },
               }}
-              className="font-light text-reg capitalize"
+              className={`text-reg capitalize ${
+                searchParams.city === location.name ? "font-bold" : "font-light"
+              }`}
               key={location.id}
             >
               {location.name}
@@ -65,7 +67,11 @@ const SearchSideBar = ({
                 pathname: "/search",
                 query: { ...searchParams, cuisine: cuisine.name },
               }}
-              className="font-light text-reg capitalize"
+              className={`text-reg capitalize ${
+                searchParams.cuisine === cuisine.name
+                  ? "font-bold"
+                  : "font-light"
+              }`}
               key={cuisine.id}
             >
               {cuisine.name}
@@ -84,7 +90,9 @@ const SearchSideBar = ({
                   price,
                 },
               }}
-              className={className}
+              className={`${className} ${
+                searchParams.price === price ? "font-bold" : "font-light"
+              }`}
               key={index}
             >
               {label}

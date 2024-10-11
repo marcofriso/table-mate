@@ -160,6 +160,9 @@ const AuthModal = ({
               >
                 {isSigninContent("Sign In", "Create Account")}
               </button>
+              <p className="text-center text-sm italic text-gray-700">
+                e.g.: john.doe@hotmail.com / 1234testTEST!
+              </p>
             </div>
           </div>
         )}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 import DatePicker from "react-datepicker";
 import { CircularProgress } from "@mui/material";
@@ -10,6 +10,7 @@ import {
 } from "@/utils/functions/convertToDisplayTime";
 import { partySize as partySizes, times } from "@/utils/data";
 import useAvailabilities from "@/utils/hooks/useAvailabilities";
+import { AuthenticationContext } from "@/app/context/AuthContext";
 
 const ReservationCard = ({
   openTime,
@@ -24,6 +25,7 @@ const ReservationCard = ({
   const [time, setTime] = useState(openTime);
   const [partySize, setPartySize] = useState("2");
   const [day, setDay] = useState(new Date().toISOString().split("T")[0]);
+  const { data: loginData } = useContext(AuthenticationContext);
 
   const { data, loading, fetchAvailabilities } = useAvailabilities();
 
@@ -117,11 +119,19 @@ const ReservationCard = ({
       </div>
       <div className="mt-5">
         <button
-          className="bg-red-600 rounded w-full px-4 text-white font-bold h-16"
+          className="bg-red-600 rounded w-full px-4 text-white font-bold h-16 disabled:bg-gray-400"
           onClick={handleClick}
-          disabled={loading}
+          disabled={loading || !loginData}
         >
-          {loading ? <CircularProgress color="inherit" /> : "Find a Time"}
+          {loginData ? (
+            loading ? (
+              <CircularProgress color="inherit" />
+            ) : (
+              "Find a Time"
+            )
+          ) : (
+            "Sign in to make a reservation"
+          )}
         </button>
       </div>
       {data && data.length ? (

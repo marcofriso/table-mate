@@ -6,7 +6,7 @@ import { AuthenticationContext } from "@/app/context/AuthContext";
 
 const useAuth = () => {
   const { setAuthState } = useContext(AuthenticationContext);
-  const { refresh } = useRouter();
+  const router = useRouter();
 
   const signin = async (
     {
@@ -25,13 +25,10 @@ const useAuth = () => {
     });
 
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_FRONTEND_SERVER}/api/auth/signin`,
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post("/api/auth/signin", {
+        email,
+        password,
+      });
 
       setAuthState({
         data: response.data,
@@ -73,17 +70,14 @@ const useAuth = () => {
     });
 
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_FRONTEND_SERVER}/api/auth/signup`,
-        {
-          email,
-          password,
-          firstName,
-          lastName,
-          city,
-          phone,
-        }
-      );
+      const response = await axios.post("/api/auth/signup", {
+        email,
+        password,
+        firstName,
+        lastName,
+        city,
+        phone,
+      });
 
       setAuthState({
         data: response.data,
@@ -109,7 +103,7 @@ const useAuth = () => {
       loading: false,
     });
 
-    refresh();
+    router.push("/");
   };
 
   return {

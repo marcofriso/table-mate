@@ -66,14 +66,11 @@ export default function AuthenticationProvider({
         });
       }
 
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_FRONTEND_SERVER}/api/auth/me`,
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      );
+      const response = await axios.get("/api/auth/me", {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
 
       axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
 

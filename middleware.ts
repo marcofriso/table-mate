@@ -6,7 +6,7 @@ export async function middleware(request: NextRequest) {
 
   if (!jwtToken) {
     console.error("No JWT token found in cookies");
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_FRONTEND_SERVER}/`);
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   const secret = new TextEncoder().encode(process.env.JWT_SECRET);
@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
     await jose.jwtVerify(jwtToken, secret);
   } catch (error) {
     console.error("Invalid JWT token", error);
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_FRONTEND_SERVER}/`);
+    return NextResponse.redirect(new URL("/", request.url));
   }
 }
 

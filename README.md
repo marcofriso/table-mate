@@ -17,6 +17,8 @@ pnpm dev
 bun dev
 ```
 
+## Prisma
+
 To run Prisma studio:
 
 ```bash

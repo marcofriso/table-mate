@@ -13,6 +13,13 @@ export async function DELETE(req: Request) {
       );
     }
 
+    // added to fix a Vercel DB bug
+    await prisma.bookingsOnTables.deleteMany({
+      where: {
+        booking_id: Number(bookingId),
+      },
+    });
+
     await prisma.booking.delete({
       where: {
         id: Number(bookingId),

@@ -20,5 +20,11 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/api/auth/me", "/bookings", "/reserve/:slug*"],
+  matcher: [
+    "/api/auth/me",
+    "/api/booking/(.*)",
+    "/api/restaurant/(.*)/reserve",
+    "/bookings",
+    "/reserve/(.*)",
+  ],
 };
